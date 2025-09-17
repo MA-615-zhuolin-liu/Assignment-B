@@ -4,23 +4,1220 @@ format: html
 editor: visual
 ---
 
-## Quarto
+# Exercises 1. Vectors
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+## Question 1
 
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+### (a)
 
 ```{r}
-1 + 1
+#| label: prob 1.1a
+p_1a <- 1:20
+p_1a
 ```
 
-You can add options to executable code like this
+### (b)
 
 ```{r}
-#| echo: false
-2 * 2
+#| label: prob 1.1b
+p_1b <-20:1
+p_1b
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+### (c)
+
+```{r}
+#| label: prob 1.1c
+p_1c <- c(1:20,19:1)
+p_1c
+```
+
+### (d)
+
+```{r}
+#| label: prob 1.1d
+tmp <- c(4,6,3)
+tmp
+```
+
+### (e)
+
+```{r}
+#| label: prob 1.1e
+p_1e <- rep(tmp,10)
+p_1e
+```
+
+### (f)
+
+```{r}
+#| label: prob 1.1f
+p_1f <- c(rep(tmp,10),4)
+p_1f
+```
+
+### (g)
+
+```{r}
+#| label: prob 1.1g
+p_1g <- rep(tmp,times=c(10,20,30))
+p_1g
+```
+
+## Question 2
+
+```{r}
+#| label: prob 1.2
+p_2 <- seq(3,6, by=0.1)
+vector_values <- exp(p_2)*cos(p_2)
+vector_values
+```
+
+## Question 3
+
+### (a)
+
+```{r}
+#| label: prob 1.3a
+p_3a <- (0.1^seq(3,36,by=3))*(0.2^seq(1,34,by=3))
+p_3a
+```
+
+### (b)
+
+```{r}
+#| label: prob 1.3b
+n <- 1:25
+p_3b <- (2^n)/n
+p_3b
+```
+
+## Question 4
+
+### (a)
+
+```{r}
+#| label: prob 1.4a
+i=10:100
+p_4a <- sum(i^3+4*i^2)
+p_4a
+```
+
+### (b)
+
+```{r}
+#| label: prob 1.4b
+i=1:25
+p_4b <- sum(2^i/i+3^i/i^2)
+p_4b
+```
+
+## Question 5
+
+### (a)
+
+```{r}
+#| label: prob 1.5a
+p_5a_labels <- paste("label",1:30)
+p_5a_labels
+```
+
+### (b)
+
+```{r}
+#| label: prob 1.5b
+p_5b_fns <- paste("fn",1:30,sep="")
+p_5b_fns
+
+```
+
+## Question 6
+
+::: {style="margin-left:2.5cm"}
+```{r}
+#| label: prob 1.6 setup
+#Setup 
+set.seed(50) 
+xVec <- sample(0:999, 250, replace=T) 
+yVec <- sample(0:999, 250, replace=T)
+#Because both vectors have length 250
+n <- length(xVec)
+```
+:::
+
+### (a)
+
+```{r}
+#| label: prob 1.6a
+p_6a <- yVec[2:n]-xVec[1:(n-1)]
+p_6a
+```
+
+### (b)
+
+```{r}
+#| label: prob 1.6b
+p_6b <- sin(yVec[1:(n-1)])/cos(xVec[2:n])
+p_6b
+```
+
+### (c)
+
+```{r}
+#| label: prob 1.6c
+p_6c <- xVec[1:(n-2)]+2*xVec[2:(n-1)]-xVec[3:n]
+p_6c
+```
+
+### (d)
+
+```{r}
+#| label: prob 1.6d
+i=1:(n-1)
+p_6d <- sum(exp((-xVec[i+1]))/(xVec[i]+10))
+p_6d
+```
+
+## Question 7
+
+### (a)
+
+```{r}
+#| label: prob 1.7a
+p_7a <- yVec[yVec > 600]
+p_7a
+```
+
+### (b)
+
+```{r}
+#| label: prob 1.7b
+p_7b <- which(yVec > 600)
+p_7b
+```
+
+### (c)
+
+```{r}
+#| label: prob 1.7c
+p_7c <- xVec[p_7b]
+p_7c
+```
+
+### (d)
+
+```{r}
+#| label: prob 1.7d
+x_mean <- mean(xVec)
+p_7d <- sqrt(abs(xVec-x_mean))
+p_7d
+```
+
+### (e)
+
+```{r}
+#| label: prob 1.7e
+max_yVec <- max(yVec)
+p_7e <- sum(yVec >=(max_yVec-200 ))
+p_7e
+```
+
+### (f)
+
+```{r}
+#| label: prob 1.7f
+p_7f <- sum(xVec %% 2==0)
+p_7f
+```
+
+### (g)
+
+```{r}
+#| label: prob 1.7g
+p_7g <- xVec[order(yVec)]
+p_7g
+```
+
+### (h)
+
+```{r}
+#| label: prob 1.7h
+p_7h <- yVec[seq(1,n,by=3)]
+p_7h
+```
+
+## Question 8
+
+```{r}
+#| label: prob 1.8
+p_8_numerator <- seq(2,38,by=2)
+p_8_denominator <- seq(3,39,by=2)
+p_8 <- (cumprod(p_8_numerator))/(cumprod(p_8_denominator))
+p_8
+```
+
+# Exercises 2. Matrices
+
+### Question 1
+
+#### (a)
+
+```{r}
+#| label: prob 2.1a
+A <- matrix(c(1,5,-2,1,2,-1,3,6,-3),nrow=3,ncol=3)
+A_squared<- A%*%A
+A_cubed<-A%*%A%*%A
+print(A)
+print(A_squared)
+print(A_cubed)
+all(A_cubed==matrix(0,nrow=3,ncol=3))
+
+```
+
+#### (b)
+
+```{r}
+#| label: prob 2.1b
+matrix_B <- A
+matrix_B[,3] <- matrix_B[,2]+matrix_B[,3]
+print(matrix_B)
+```
+
+### Question 2
+
+```{r}
+#| label: prob 2.2
+B <- matrix(c(10,-10,10),nrow=15,ncol=3,byrow = TRUE)
+p_2.2 <- crossprod(B)
+p_2.2
+```
+
+### Question 3
+
+```{r}
+#| label: prob 2.3
+matE <- matrix(0,nrow=6,ncol=6)
+matE[abs(row(matE) - col(matE)) == 1] <- 1
+matE
+```
+
+### Question 4
+
+```{r}
+#| label: prob 2.4
+rows <- 0:4
+cols <-0:4
+p_2.4 <- outer(rows,cols,"+")
+p_2.4
+```
+
+### Question 5
+
+#### (a)
+
+```{r}
+#| label: prob 2.5a
+n_2.5a <- 5
+matrix_2.5a <- outer(0:(n_2.5a-1),0:(n_2.5a-1),function(r,c)(r+c)%%n_2.5a)
+print(matrix_2.5a)
+```
+
+#### (b)
+
+```{r}
+#| label: prob 2.5b
+n_2.5b<-10
+matrix_2.5b <- outer(0:(n_2.5b-1),0:(n_2.5b-1),function(r,c)(r+c)%%n_2.5b)
+print(matrix_2.5b)
+```
+
+#### (c)
+
+```{r}
+#| label: prob 2.5c
+n_2.5c <- 9
+matrix_2.5c <- outer(0:(n_2.5c-1),0:(n_2.5c-1),function(r,c)(r-c)%%n_2.5c)
+print(matrix_2.5c)
+```
+
+### Question 6
+
+```{r}
+#| label: prob 2.6
+n_p_2.6 <- 5
+Matrix_p_2.6 <- outer(1:n_p_2.6,1:n_p_2.6,function(i,j) 1+ abs (i-j))
+y_p_2.6 <- c(7,-1,-3,5,17)
+p_2.6 <- solve(Matrix_p_2.6,y_p_2.6)
+print(p_2.6)
+#For vertify the answer
+v <- Matrix_p_2.6 %*% p_2.6
+v
+all.equal(as.vector(v),y_p_2.6)
+```
+
+## Question 7
+
+::: {style="margin-left:2.5cm"}
+```{r}
+#| label: prob 7
+#setup
+set.seed(75)
+aMat <- matrix( sample(10, size=60, replace=T), nr=6)
+```
+:::
+
+### (a)
+
+```{r}
+#| label: prob 2.7a
+p_2.7a <- apply(aMat>4,1,sum)
+p_2.7a
+```
+
+### (b)
+
+```{r}
+#| label: prob 2.7b
+seven_count_eachrow <- apply(aMat==7,1,sum)
+two_sevens <- which(seven_count_eachrow==2)
+two_sevens
+
+```
+
+### (c)
+
+#!
+
+```{r}
+#| label: prob 2.7c
+column_sum <- colSums(aMat)
+pair_sum <- outer(column_sum,column_sum,"+")
+pair_perm <- which (pair_sum>75,arr.ind = TRUE)
+colnames(pair_perm) <- c("col1","col2")
+pair_no_repetition <- which(pair_sum>75&upper.tri(pair_sum),arr.ind = TRUE)
+colnames(pair_no_repetition) <- c("col1","col2")
+pair_perm
+pair_no_repetition
+```
+
+## Question 8
+
+### (a)
+
+```{r}
+#| label: prob 2.8a
+i <- 1:20
+j <- 1:5
+p_2.8a <- sum(i^4)*sum(1/(3+j))
+p_2.8a
+```
+
+### (b)
+
+```{r}
+#| label: prob 2.8b
+i <- 1:20
+j <- 1:5
+p_2.8b <- sum(outer(i,j,function(i,j)i^4/(3+i*j)))
+p_2.8b
+```
+
+### (c)
+
+#!
+
+```{r}
+#| label: prob 2.8c
+i <- 1:10
+p_2.8c <- sum(outer(i,i,function(i,j)i^4/(3+i*j)))
+p_2.8c
+```
+
+# Exercises 3. Simple Functions
+
+### Question 1
+
+#### (a)
+
+```{r}
+#| label: prob 3.1a
+n <- length(xVec)
+tmpFn1 <- function(xVec){
+  powers<- 1:n
+  p_3.1a <- xVec^powers
+  return(p_3.1a)
+}
+```
+
+#### (b)
+
+```{r}
+#| label: prob 3.1b
+n <- length(xVec)
+tmpFn2 <- function(xVec){
+  powers <- 1:n
+  p_3.1b <- (xVec^powers)/powers
+  return(p_3.1b)
+}
+```
+
+### Question 2
+
+```{r}
+#| label: prob 3.2
+n <- length(xVec)
+tmpFn <- function(xVec){
+  p_3.2 <- (xVec[1:(n-2)]+xVec[2:(n-1)]+xVec[3:n])/3
+  return(p_3.2)
+}
+ tmpFn(c(1:5,6:1))
+```
+
+### Question 3
+
+```{r}
+#| label: prob 3.3
+tmpFn <- function(xVec){
+  ifelse(xVec<0,
+         xVec^2+2*xVec+3,
+         ifelse(xVec <2,
+                xVec +3,
+                xVec^2+4*xVec-7))
+}
+x <- seq(-3,3,by=0.01)
+y <- tmpFn(x)
+plot(x,y,type="l",xlab="x",ylab="f(x)",main="Piecewise function f(x)")
+```
+
+### Question 4
+
+#！
+
+```{r}
+#| label: prob 3.4
+A <- matrix(c(1,1,3,5,2,6,-2,-1, -3), nrow = 3, byrow = T)
+
+A
+
+A%%2
+
+A%%2 == 1
+
+A[A%%2 == 1]
+
+bb <- 2*A[A%%2 == 1]
+
+A[A%%2 == 1] <- 2*A[A%%2 == 1]
+
+A
+
+is.matrix(A)
+
+
+tmpFn <- function(mat){
+  if(!is.matrix(mat)) stop("Input is not a matrix")
+  mat[mat%%2 == 1] <- 2*mat[mat%%2 == 1]
+  return(mat)
+}
+
+A <- matrix(c(1,1,3,5,2,6,-2,-1, -3), nrow = 3, byrow = T)
+
+tmpFn(A)
+```
+
+### Question 5
+
+```{r}
+#| label: prob 3.5
+A <- function(n,k){
+  mat <- matrix(0,nrow=n,ncol=n)
+  for (i in 1:n){
+    for (j in 1:n){if (i==j){mat[i,j]<- k }
+    else if (abs(i-j)==1){mat[i,j] <- 1 }
+    }
+  }
+  return(mat)
+}
+p_3.5 <- A(5,2)
+p_3.5
+```
+
+### Question 6
+
+```{r}
+#| label: prob 3.6
+quadrant <- function(alpha){
+  a <- alpha %% 360
+  ifelse(a>= 0 & a < 90,  1,
+  ifelse(a >= 90 & a < 180, 2,
+  ifelse(a >= 180 & a < 270, 3,
+  ifelse(a >= 270 & a < 360, 4))))
+}
+quadrant(55)
+quadrant(95)
+quadrant(455)
+```
+
+### Question 7
+
+#### (a)
+
+```{r}
+#| label: prob 3.7a
+weekday <- function(day, month, year) {
+  m <- ifelse(month <= 2, month + 10, month - 2)
+  y_adj <- ifelse(month <= 2, year - 1, year)
+  k <- day
+  y <-  y_adj%% 100         
+  c <-  y_adj%/% 100
+  f <- ( ((2.6*m - 0.2) %/% 1) + k + y + (y %/% 4) + (c %/% 4) - 2*c ) %% 7
+  days <- c("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+  return(days[f + 1])  
+}
+weekday(21, 7, 1963) 
+weekday(21, 2, 1963)  
+```
+
+#### (b)
+
+```{r}
+#| label: prob 3.7b
+#Yes, the function work if the input are the same length and with the valid entries.
+```
+
+### Question 8
+
+#### (a)
+
+```{r}
+#| label: prob 3.8a
+testLoop <- function (n) {
+  if (n<2) {stop("n must be at least 2")}
+  x <- numeric(n)
+  x[1] <- 1
+  if (n-1 >= 2){
+  x[2] <- 2
+  for (j in 3:n){
+  x[j] <- x[j-1]+2/x[j-1]
+  }
+  }
+  return(x)
+}
+  testLoop(5)
+```
+
+#### (b)
+
+```{r}
+#| label: prob 3.8b
+testLoop2 <- function(yVec){
+  n <- length(yVec)
+  sum(exp(1:n))
+}
+```
+
+### Question 9
+
+#### (a)
+
+```{r}
+#| label: prob 3.9a
+quadmap <- function (start,rho,niter){
+  x <- numeric(niter)
+  x[1] <- start
+  for (k in 2:niter){
+  x[k] <- rho * x[k-1]*(1-x[k-1])
+  }
+  return(x)
+}
+  quadmap(start = 0.01, rho = 2, niter = 50)
+  tmp <- quadmap(start = 0.95, rho = 2.99, niter = 500)
+  plot(tmp, type = "l") 
+  plot(tmp[300:500], type = "l")
+```
+
+#### (b)
+
+#?
+
+```{r}
+#| label: prob 3.9b
+quadmap_iter <- function(start, rho, tol = 0.02, maxiter = 10000) {
+  x <- numeric(maxiter)
+  x[1] <- start 
+  for (n in 2:maxiter) {
+    x[n] <- rho * x[n-1] * (1 - x[n-1])
+    if (abs(x[n] - x[n-1]) < tol) {
+      return(n-1)
+    }
+  }
+  return(NA)
+}
+  quadmap_iter(start = 0.95, rho = 2.99)
+```
+
+### Question 10
+
+#### (a)
+
+```{r}
+#| label: prob 3.10a
+tmpFn <- function(xVec) {
+  x_bar <- mean(xVec)
+  n <- length(xVec)
+  denominator <- sum((xVec - x_bar)^2)  
+  if (n >= 2) {
+  r1 <- sum((xVec[2:n] - x_bar) * (xVec[1:(n-1)] - x_bar))/ denominator
+  } else {
+  r1 <- NA  
+  }
+  if (n >= 3) {
+  r2 <- sum((xVec[3:n] - x_bar) * (xVec[1:(n-2)] - x_bar))/ denominator
+  } else {
+  r2 <- NA
+  }
+  return(list(r1 = r1, r2 = r2))
+}
+
+x <- seq(2, 56, by = 3)
+tmpFn(x)
+```
+
+#### (b)
+
+```{r}
+#| label: prob 3.10b
+tmpFn2 <- function(xVec, k) {
+  n <- length(xVec)
+  x_bar <- mean(xVec)
+  denominator <- sum((xVec - x_bar)^2)
+
+  r <- sapply(0:k, function(lag) {
+  if (lag == 0) return(1)
+  sum((xVec[(lag+1):n] - x_bar) * (xVec[1:(n-lag)] - x_bar)) / denominator
+  })
+  
+  names(r) <- paste("r", 0:k)
+  return(r)
+}
+x <- seq(2, 56, by = 3)
+tmpFn2(x, 5)
+
+```
+
+# Exercises 4. Harder Functions
+
+### Question 1
+
+#！ \#### (a) #!
+
+```{r}
+#| label: prob 4.1a
+set.seed(50)
+x <- as.integer(runif(5, 1, 5))
+y <- as.integer(runif(6, 2, 4))
+z <- outer(y, x, "<")
+colSums(z)
+p_4.1a <- function (x,y){
+  z = colSums(outer(y,x,"<"))
+  return(z)
+}
+p_4.1a(x,y)
+```
+
+```{r}
+f_1a <- function(x, y) {
+  colSums(outer(y, x, "<"))
+}
+f_1a(x,y)
+```
+
+### (b)
+
+```{r}
+#| label: prob 4.1b
+rowSums(sapply(y, FUN=function(y){y < x}))
+p_4.1b <- function (x,y){
+  rowSums(sapply(y, FUN=function(y){y < x}))
+}
+p_4.1b(x,y)
+```
+
+```{r}
+f_1b <- function(x, y) {
+  sapply(x, function(xk) sum(y < xk))
+}
+f_1b(x,y)
+```
+
+### (c)
+
+```{r}
+#| label: prob 4.1c
+p_4.1c<- function(x,y){
+  rowSums(vapply(y, FUN=function(y){y<x}, 
+       FUN.VALUE = (along=x)))
+}
+p_4.1c(x,y)
+```
+
+```{r}
+f_1c <- function(x, y) {
+  vapply(x, function(xk) sum(y < xk), integer(1))
+}
+f_1c(x,y)
+```
+
+### (d)
+
+```{r}
+#| label: prob 4.1d
+# If the x and y has length 0,then z will be all equal to 0.Also if one output with matrix, then outer will work,but the sapply and vapply will produce wrong answer.
+```
+
+### (e)
+
+```{r}
+#| label: prob 4.1e
+set.seed(53)
+x1 <- rnorm(10010)
+y1 <- rnorm(10020)
+system.time(p_4.1a(x1,y1))
+system.time(p_4.1b(x1,y1))
+system.time(p_4.1c(x1,y1))
+```
+
+```{r}
+set.seed(53)
+x1 <- rnorm(10010)
+y1 <- rnorm(10020)
+
+system.time(z1 <- f_1a(x1, y1))
+system.time(z2 <- f_1b(x1, y1))
+system.time(z3 <- f_1c(x1, y1))
+identical(z1, z2)  
+identical(z1, z3) 
+```
+
+## Question 2
+
+### (a)
+
+```{r}
+#| label: prob 4.2a
+remove_NA <- function(mat){
+  mat[,colSums(is.na(mat)==0,drop=FALSE)]
+}
+```
+
+### (b)
+
+```{r}
+#| label: prob 4.2b
+remove_NArowcol <-function (mat){
+  one_row <- rowSums(is.na (mat))==0
+  one_col <- colSums(is.na(mat))==0
+  mat[one_row,one_col,drop=FALSE]
+}
+```
+
+## Question 3
+
+### (a)
+
+```{r}
+#| label: prob 4.3a
+empCopula <- function(u, v, xVec, yVec) {
+  n <- length(xVec)
+  r <- rank(xVec)  
+  s <- rank(yVec)
+  mean((r / (n + 1) <= u) & (s / (n + 1) <= v))
+}
+
+```
+
+### (b)
+
+#!
+
+```{r}
+#| label: prob 4.3b
+empCopula_vec <- function(u, v, xVec, yVec) {
+  n <- length(xVec)
+  r <- rank(xVec)
+  s <- rank(yVec)
+  mapply(function(ui, vi) {
+    mean((r / (n + 1) <= ui) & (s / (n + 1) <= vi))
+  }, u, v)
+}
+
+```
+
+## Question 4
+
+### (a)
+
+```{r}
+#| label: prob 4.4a
+funA<- function(n, r) {
+  total <- 0
+  for (i in 1:n) {
+    for (s in 1:r) {
+      total <- total + s^2 / (10 + 4 * r^3)
+    }
+  }
+  total
+}
+
+```
+
+### (b)
+
+```{r}
+#| label: prob 4.4b
+funB<-function(n, r) {
+  M <- (col(matrix(0, n, r))^2) / (10 + 4 * r^3)
+  sum(M)
+}
+
+```
+
+### (c)
+
+```{r}
+#| label: prob 4.4c
+funC<- function(n, r) {
+  M <- outer(1:n, 1:r, function(i, s) s^2 / (10 + 4 * r^3))
+  sum(M)
+}
+
+```
+
+### (d)
+
+```{r}
+#| label: prob 4.4d
+innerSum <- function(r) {
+  sum(sapply(1:r, function(s) s^2 / (10 + 4 * r^3)))
+}
+funD <- function(n, r) {
+  sum(sapply(1:n, function(i) innerSum(r)))
+}
+
+```
+
+### (e)
+
+#!
+
+```{r}
+#| label: prob 4.4e
+funE <- function(n, r) {
+  sum(mapply(function(i, s) (s^2) / (10 + 4 * r^3),
+             rep(1:n, each = r),
+             rep(1:r, times = n)))
+}
+funF <- function(n, r) {
+  n * sum((1:r)^2 / (10 + 4 * r^3))
+}
+
+```
+
+```{r}
+system.time(funA(500, 1000))
+system.time(funB(500, 1000))
+system.time(funC(500, 1000))
+system.time(funD(500, 1000))
+system.time(funE(500, 1000))
+system.time(funF(500, 1000))
+```
+
+## Question 5
+
+### (a)
+
+```{r}
+#| label: prob 4.5a
+```
+
+### (b)
+
+```{r}
+#| label: prob 4.5b
+```
+
+### (c)
+
+```{r}
+#| label: prob 4.5c
+```
+
+## Question 6
+
+### (a)
+
+```{r}
+#| label: prob 4.6a
+```
+
+### (b)
+
+```{r}
+#| label: prob 4.6b
+```
+
+### (c)
+
+```{r}
+#| label: prob 4.6c
+```
+
+### (d)
+
+```{r}
+#| label: prob 4.6d
+```
+
+# Exercises 5. Data frame, list, array and time series
+
+## Question 1
+
+### (a)
+
+```{r}
+#| label: prob 5.1a
+tsEwma <- function(tsDat, m0 = 0, delta = 0.7) {
+  n <- length(tsDat)
+  m <- numeric(n)
+  prev_m <- m0
+  
+  for (t in 1:n) {
+    e_t <- tsDat[t] - prev_m
+    m[t] <- prev_m + (1 - delta) * e_t
+    prev_m <- m[t]
+  }
+  
+  ts(m, start = start(tsDat), frequency = frequency(tsDat))
+}
+
+```
+
+### (b)
+
+```{r}
+#| label: prob 5.1b
+tsEwma_fast <- function(tsDat, m0 = 0, delta = 0.7) {
+  z <- as.numeric(tsDat)   # strip names and attributes
+  n <- length(z)
+  m <- numeric(n)
+  prev_m <- m0
+  
+  for (t in 1:n) {
+    e_t <- z[t] - prev_m
+    m[t] <- prev_m + (1 - delta) * e_t
+    prev_m <- m[t]
+  }
+  
+  ts(m, start = start(tsDat), frequency = frequency(tsDat))
+}
+
+```
+
+```{r}
+set.seed(1)
+datVec <- rnorm(24)
+tsDat <- ts(datVec, start = c(1960, 3), frequency = 12)
+
+system.time(m1 <- tsEwma(tsDat, m0 = 0, delta = 0.7))
+system.time(m2 <- tsEwma_fast(tsDat, m0 = 0, delta = 0.7))
+
+```
+
+## Question 2
+
+### (a)
+
+```{r}
+#| label: prob 5.2a
+myListFn <- function(n) {
+  x <- rnorm(n)
+  xbar <- mean(x)
+  if (xbar >= 0) {
+    y <- rexp(n, rate = 1/xbar)   
+  } else {
+    z <- rexp(n, rate = 1/(-xbar))  
+    y <- -z
+  }
+  k <- sum(abs(y) > abs(x))
+  list(xVec = x, yVec = y, count = k)
+}
+
+```
+
+### (b)
+
+```{r}
+#| label: prob 5.2b
+lapply(rep(10, 4), myListFn)  
+sapply(rep(10, 4), myListFn)  
+```
+
+### (c)
+
+```{r}
+#| label: prob 5.2c
+myList <- lapply(rep(10, 1000), myListFn)
+
+```
+
+### (d)
+
+```{r}
+#| label: prob 5.2d
+xMat <- sapply(myList, `[[`, "xVec")
+dim(xMat)  # 10 rows × 1000 cols
+```
+
+### (e)
+
+```{r}
+#| label: prob 5.2e
+countVec <- sapply(myList, `[[`, "count")
+```
+
+### (f)
+
+```{r}
+#| label: prob 5.2f
+filtered_list <- myList[ sapply(myList, `[[`, "count") > 2 ]
+```
+
+## Question 3
+
+### (a)
+
+```{r}
+#| label: prob 5.3a
+x_mat <- do.call(rbind, lapply(myList, `[[`, "xVec"))
+y_mat <- do.call(rbind, lapply(myList, `[[`, "yVec"))
+w <- 1:10
+num <- rowSums(x_mat * w)
+den <- rowSums(y_mat * w)
+ratios <- num / den
+```
+
+### (b)
+
+```{r}
+#| label: prob 5.3b
+diff_mat <- x_mat - y_mat
+```
+
+### (c)
+
+```{r}
+#| label: prob 5.3c
+x_col2 <- x_mat[, 2]
+y_col2 <- y_mat[, 2]
+i <- 1:1000
+num_c <- sum(i * x_col2)
+den_c <- sum(i * y_col2)
+
+final_ratio <- num_c / den_c
+```
+
+## Question 4
+
+### (a)
+
+```{r}
+#| label: prob 5.4a
+testFn <- function(arr) {
+  d1 <- dim(arr)[1]
+  d2 <- dim(arr)[2]
+  d3 <- dim(arr)[3]
+  wArray <- array(0, dim = c(d1, d2, d3))
+  zMat   <- matrix(0, nrow = d2, ncol = d3)
+  for (j in 1:d2) {
+    for (k in 1:d3) {
+      slice <- arr[, j, k]            
+      wArray[, j, k] <- slice - min(slice)
+      zMat[j, k] <- sum(slice) / max(slice)
+    }
+  }
+  
+  list(wArray = wArray, zMat = zMat)
+}
+
+```
+
+### (b)
+
+```{r}
+#| label: prob 5.4b
+testFn2 <- function(arr) {
+  apply(arr, c(2,3), mean)
+}
+
+```
+
+## Question 5
+
+### (a)
+
+#!
+
+```{r}
+#| label: prob 5.5a
+drawA <- function(X){
+lines(X[1:3,1], X[1:3,2])
+lines(X[4:5,1], X[4:5,2])
+}
+shift <- function(X, a, b) {
+  X <- X
+  X[,1] <- X[,1] + a
+  X[,2] <- X[,2] + b   
+  X
+}
+  A <- matrix(c(0,0, 1,3, 2,0, 4/9,4/3, 14/9,4/3), ncol=2, byrow=TRUE)
+  plot(c(-10,10), c(-10,10),ann=FALSE,type ="n") 
+  drawA(A)
+  A_shifted <- shift(A,0,0)
+  drawA(A_shifted)
+
+```
+
+### (b)
+
+```{r}
+#| label: prob 5.5b
+rotate <- function(X, r) {
+  R <- matrix(c(cos(r), sin(r), -sin(r), cos(r)), ncol = 2, byrow = TRUE)
+  X %*% R
+}
+A <- matrix(c(0,0, 1,3, 2,0, 4/9,4/3, 14/9,4/3), ncol=2, byrow=TRUE)
+  plot(c(-10,10), c(-10,10),ann=FALSE,type ="n") 
+  drawA(A)
+A_rot <- rotate( A,pi/4)
+  drawA(A_rot)
+```
+
+### (c)
+
+```{r}
+#| label: prob 5.5c
+```
+
+### (d)
+
+```{r}
+#| label: prob 5.5d
+```
+
+### (e)
+
+```{r}
+#| label: prob 5.5e
+```
+
+:::
